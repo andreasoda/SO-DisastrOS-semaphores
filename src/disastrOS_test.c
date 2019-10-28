@@ -21,12 +21,21 @@ void childFunction(void* args){
   int fd=disastrOS_openResource(disastrOS_getpid(),type,mode);
   printf("fd=%d\n", fd);
   printf("PID: %d, terminating\n", disastrOS_getpid());
-
+    
+  //test semopen
+  disastrOS_semOpen(0);
+  disastrOS_semOpen(disastrOS_getpid());
+    
   for (int i=0; i<(disastrOS_getpid()+1); ++i){
     printf("PID: %d, iterate %d\n", disastrOS_getpid(), i);
     disastrOS_sleep((20-disastrOS_getpid())*5);
   }
-  disastrOS_exit(disastrOS_getpid()+1);
+    
+    // test semclose
+    disastrOS_semClose(0);
+    disastrOS_semClose(disastrOS_getpid());
+    
+    disastrOS_exit(disastrOS_getpid()+1);
 }
 
 
