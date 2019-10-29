@@ -29,6 +29,16 @@ void childFunction(void* args){
   for (int i=0; i<(disastrOS_getpid()+1); ++i){
     printf("PID: %d, iterate %d\n", disastrOS_getpid(), i);
     disastrOS_sleep((20-disastrOS_getpid())*5);
+     
+    //test semwait and sempost
+    disastrOS_semWait(0);
+    disastrOS_semWait(disastrOS_getpid());
+
+    printf("Process %d is doing critical stuff!\n", disastrOS_getpid());
+    disastrOS_sleep(disastrOS_getpid()*2);
+
+    disastrOS_semPost(disastrOS_getpid());
+    disastrOS_semPost(0);
   }
     
     // test semclose
