@@ -11,11 +11,13 @@ void internal_semClose(){
     int semnum=running->syscall_args[0];
 
     SemDescriptor* des=SemDescriptorList_bySemnum(&running->sem_descriptors,semnum);
-
+    //controllo se il descrittore esiste per il processo corrente
     if (! des){
+        disastrOS_debug("non ci sono semafori con questo fd\n");
         running->syscall_retvalue=DSOS_ESEMCLOSE;
         return;
      }
+     disastrOS_debug("rimuovo il semaforo con questo fd\n");
     
      des = (SemDescriptor*) List_detach(&running->sem_descriptors, (ListItem*) des);
      assert(des);

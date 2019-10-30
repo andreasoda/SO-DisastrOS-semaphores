@@ -61,12 +61,12 @@ SemDescriptor*  SemDescriptorList_byFd(ListHead* l, int fd){
   return 0;
 }
 SemDescriptor*  SemDescriptorList_bySemnum(ListHead* l, int semnum){
-  ListItem* list_item = l->first;
+  ListItem* aux = l->first;
   while(aux){
-    SemDescriptor* des=(SemDescriptor*)list_item;
+    SemDescriptor* des=(SemDescriptor*)aux;
     if (des->semaphore->id==semnum)
       return des;
-    list_item = list_item->next;
+    aux = aux->next;
   }
   return 0;
 }

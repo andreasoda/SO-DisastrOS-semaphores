@@ -14,12 +14,14 @@ void internal_semPost(){
     SemDescriptor* desc=SemDescriptorList_bySemnum(&running->sem_descriptors, semnum);
 
     if (! desc){
+      disastrOS_debug("non ci sono semafori aperti con questo fd\n");
       running->syscall_retvalue=DSOS_ENOSEM;
       return;
     }
 
     Semaphore* sem=desc->semaphore;
     sem->count++;
+    disastrOS_debug("incrementato valore semaforo\n");
  
     if(sem->count <= 0){
  
