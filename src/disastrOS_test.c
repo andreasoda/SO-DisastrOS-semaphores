@@ -36,6 +36,7 @@ void childFunction(void* args){
 
     printf("Process %d is doing critical stuff!\n", disastrOS_getpid());
     disastrOS_sleep(disastrOS_getpid()*2);
+    printf("Process %d is exiting from critical section\n", disastrOS_getpid());
 
     disastrOS_semPost(disastrOS_getpid());
     disastrOS_semPost(0);
