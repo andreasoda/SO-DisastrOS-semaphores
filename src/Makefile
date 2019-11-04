@@ -15,6 +15,7 @@ HEADERS=disastrOS.h\
 	disastrOS_semdescriptor.h\
 	linked_list.h\
 	pool_allocator.h\
+	disastrOS_semtest.h
 
 OBJS=pool_allocator.o\
      linked_list.o\
@@ -39,8 +40,8 @@ OBJS=pool_allocator.o\
      disastrOS_semopen.o\
      disastrOS_semclose.o\
      disastrOS_semwait.o\
-     disastrOS_sempost.o
-
+     disastrOS_sempost.o\
+     disastrOS_semtest.o
 
 LIBS=libdisastrOS.a
 
